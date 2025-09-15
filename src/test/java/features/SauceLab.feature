@@ -5,7 +5,7 @@ Feature: SauceLab Test Cases
 
 
 @invaliEmailAndInvalidPassword
-	Scenario: Login with invalid email
+	Scenario: Login with invalid credentials
 	Given user launches the login page
 	When user enters invalid email and invalid password
 	And click on Submit button
