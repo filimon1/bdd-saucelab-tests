@@ -1,9 +1,6 @@
 @SauceLabFeature
 Feature: SauceLab Test Cases
 
-
-
-
 @invaliEmailAndInvalidPassword
 	Scenario: Login with invalid credentials
 	Given user lanuches the login page
