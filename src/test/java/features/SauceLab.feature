@@ -6,14 +6,14 @@ Feature: SauceLab Test Cases
 
 @invaliEmailAndInvalidPassword
 	Scenario: Login with invalid credentials
-	Given user launches the login page
+	Given user lanuches the login page
 	When user enters invalid email and invalid password
 	And click on Submit button
 	Then the page displays "Invalid credentials" message
 	
 @emptyPasswordWithEmail
 	Scenario: Login with invalid password
-	Given user launches the Login Page
+	Given user lanuches the login page
 	When user enters valid email and empty password
 	And click on Submit button
 	Then the page displays "Password is required" message 

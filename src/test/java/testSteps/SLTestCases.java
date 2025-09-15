@@ -17,7 +17,7 @@ public class SLTestCases extends DriverFactory {
 
 	BasePage base = new BasePage();
 
-	@Given("user launches the login page")
+	@Given("user lanuches the login page")
 	public void user_launch_url() throws IOException {
 		driver = getDriver();
 
@@ -43,13 +43,6 @@ public class SLTestCases extends DriverFactory {
 		base.clickElementById("login-button");
 	}
 
-	@Then("the page displays \"Invalid credentials\" message")
-	public void verifyMissingCredentials() {
-		WebElement requiredError=driver.findElement(By.xpath("//div[@class='error-message-container error']"));
-		String actualText=requiredError.getText();
-		Assert.assertEquals("Epic sadface: Username and password do not match any user in this service",actualText);
-	}
-	
 	@When("user enters valid email and empty password")
 	public void clickOnBothFieldsOnly() {
 		base.clickElementById("user-name");
@@ -58,20 +51,27 @@ public class SLTestCases extends DriverFactory {
 		base.clickElement("password");
 	}
 
-	@Then("the page displays \"Password is required\" message ")
+	@When("user leaves both email and password fields empty")
+	public void leaveBothFieldsEmpty() {
+		base.clickElementById("user-name");
+		base.clickElementById("password");
+	}
+	
+	@Then("the page displays \"Invalid credentials\" message")
+	public void verifyMissingCredentials() {
+		WebElement requiredError=driver.findElement(By.xpath("//div[@class='error-message-container error']"));
+		String actualText=requiredError.getText();
+		Assert.assertEquals("Epic sadface: Username and password do not match any user in this service",actualText);
+	}
+	
+	@Then("the page displays \"Password is required\" message")
 	public void verifyPasswordRequiredMessage () {
 		WebElement requiredError=driver.findElement(By.xpath("//div[@class='error-message-container error']"));
 		String actualText=requiredError.getText();
 		Assert.assertEquals("Epic sadface: Password is required",actualText);
 	}
-
-	@When("When user leaves both email and password fields empty")
-	public void leaveBothFieldsEmpty() {
-		base.clickElementById("user-name");
-		base.clickElement("password");
-	}
-
-	@Then("Then the page displays \"Username is required\" message ")
+	
+	@Then("the page displays \"Username is required\" message")
 	public void emptyLoginErrorMessage() {
 		WebElement requiredError=driver.findElement(By.xpath("//div[@class='error-message-container error']"));
 		String actualText=requiredError.getText();

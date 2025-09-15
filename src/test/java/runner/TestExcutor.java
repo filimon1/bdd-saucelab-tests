@@ -12,7 +12,7 @@ import io.cucumber.junit.CucumberOptions;
 	    //plugin = {"pretty", "html:target/report.html"},
 	    plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, 
 
-	    tags = "@invaliEmailAndInvalidPassword",
+	    tags = "@SauceLabFeature",
 	    monochrome = true,
 	    dryRun = false
 	)
