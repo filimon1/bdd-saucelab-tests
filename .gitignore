@@ -1,0 +1,15 @@
+# Ignore build output
+target/
+
+# Ignore compiled Java files
+*.class
+
+# Ignore log files
+*.log
+
+# Ignore IDE-specific files (IntelliJ)
+.idea/
+*.iml
+
+# Ignore macOS system file (if you ever use a Mac)
+.DS_Store
