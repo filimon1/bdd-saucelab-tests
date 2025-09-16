@@ -9,8 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 	    features = "src/test/java/features/",
 	    glue = {"testSteps"},
-	    //plugin = {"pretty", "html:target/report.html"},
-	    plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, 
+	    plugin = {"pretty", "html:target/report.html"},
+	   // plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, 
 
 	    tags = "@SauceLabFeature",
 	    monochrome = true,
