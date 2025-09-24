@@ -1,7 +1,9 @@
 package testSteps;
 
 import java.io.IOException;
-
+import java.util.Properties;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -16,8 +18,11 @@ import util.driver.DriverFactory;
 public class SLTestCases extends DriverFactory {
 
 	BasePage base = new BasePage();
-
-	@Given("user lanuches the login page")
+	protected static String get_username="";
+	protected static String get_pwd="";
+	
+	
+	@Given("user launch the login page")
 	public void user_launch_url() throws IOException {
 		driver = getDriver();
 
@@ -38,10 +43,7 @@ public class SLTestCases extends DriverFactory {
 		base.typeToField("password", "password12");
 	}
 
-	@And("click on Submit button")
-	public void clickOnLoginButton() {
-		base.clickElementById("login-button");
-	}
+	
 
 	@When("user enters valid email and empty password")
 	public void clickOnBothFieldsOnly() {
@@ -55,6 +57,27 @@ public class SLTestCases extends DriverFactory {
 	public void leaveBothFieldsEmpty() {
 		base.clickElementById("user-name");
 		base.clickElementById("password");
+	}
+	
+	
+	@When("user enter valid email and valid password")
+	public void enterValidCredentials() throws IOException {
+		Properties prop=new Properties();
+		InputStream input=new FileInputStream("login.properties");
+        prop.load(input);
+        
+        get_username=prop.getProperty("username");
+        get_pwd=prop.getProperty("password");
+        
+        base.typeToField("user-name", get_username);
+        base.typeToField("password", get_pwd);
+	}
+	
+	
+	
+	@And("click on Submit button")
+	public void clickOnLoginButton() {
+		base.clickElementById("login-button");
 	}
 	
 	@Then("the page displays \"Invalid credentials\" message")
@@ -76,5 +99,13 @@ public class SLTestCases extends DriverFactory {
 		WebElement requiredError=driver.findElement(By.xpath("//div[@class='error-message-container error']"));
 		String actualText=requiredError.getText();
 		Assert.assertEquals("Epic sadface: Username is required",actualText);
+	}
+	
+	@Then("the page displays \"Swag Labs\" header")
+	public void verifySuccessfulLogin(){
+		WebElement swagLabHeader=driver.findElement(By.xpath("//div[@class=\"app_logo\"]"));
+		String actualText=swagLabHeader.getText();
+		Assert.assertEquals("Swag Labs", actualText);
+		
 	}
 }

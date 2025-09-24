@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 	    glue = {"testSteps"},
 	   // plugin = {"pretty", "html:target/report.html"},
 	    plugin = {"pretty", "html:target/cucumber-report.html", "json:target/cucumber-report.json"},
-	    tags = "@SauceLabFeature",
+	    tags = "@succesfulLogin",
 	    monochrome = true,
 	    dryRun = false
 	)
